@@ -1,4 +1,15 @@
 const functions = require("./functions");
+const reverseString = require("./reverseString");
+
+beforeEach(() => initDatabase());
+afterEach(() => closeDatabase());
+
+const initDatabase = () => console.log("Init Database");
+const closeDatabase = () => console.log("close Database");
+
+beforeAll(() => {
+  console.log("Run Before all test executed");
+});
 
 test("2 + 2 should adds to 4", () => {
   expect(functions.add(2, 2)).toBe(4);
@@ -47,4 +58,17 @@ test("user fetched title should be delectus aut autem", async () => {
   expect.assertions(1);
   const { data } = await functions.fetchUser();
   expect(data.title).toBe("delectus aut autem");
+});
+
+test("Should reverse yogendra", () => {
+  expect(reverseString("yogendra")).toBe("ardnegoy");
+});
+
+describe("Name of the group", () => {
+  beforeEach(() => {
+    console.log("before Each in describe");
+  });
+  test("should yogendra equal yogendra", () => {
+    expect("yogendra").toBe("yogendra");
+  });
 });
